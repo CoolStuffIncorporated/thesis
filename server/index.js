@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const logger = require("morgan");
 const cors = require("cors");
+let { getPointsOfInterest } = require("./helperFunctions");
 
 const {
   log,
@@ -28,6 +29,17 @@ app.use(logger("dev"));
 app.use(cors());
 // app.use(express.static(path.join(__dirname, "../dist/")));
 app.use(express.static("dist"));
+
+app.post("/getPointsOfInterest", (req, res) => {
+  console.log('hello');
+  getPointsOfInterest(req.body.country, (err, data) => {
+    if (err) {
+      console.log("error getting points of interest", err);
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 app.listen(port, () => {
   log(chalkSuccess(`Port ${port} is lit fam 🔥 🔥 🔥`));

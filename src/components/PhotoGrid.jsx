@@ -1,4 +1,12 @@
 import React from 'react';
+import lifecycle from 'react-pure-lifecycle'
+
+const methods =  {
+  componentDidMount(props) {
+    console.log('props',props)
+    props.setNavFlagToDashboard()
+  }
+}
 
 const PhotoGrid = (props) => {
   console.log('photogrid', props)
@@ -14,5 +22,5 @@ const PhotoGrid = (props) => {
   )
 }
 
-export default PhotoGrid;
+export default lifecycle(methods)(PhotoGrid);
 

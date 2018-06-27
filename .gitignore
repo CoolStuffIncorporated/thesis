@@ -1,5 +1,6 @@
 node_modules/
 package-lock.json
+config.js
 *.log
 
 build/
@@ -23,7 +24,5 @@ Icon
 
 .env.development
 .env.test
-
-jest.config.json
 
 _README.md

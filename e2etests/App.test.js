@@ -1,5 +1,5 @@
 /* global describe, it, browser */
-import expect from "chai";
+const expect = require("chai").expect;
 
 describe("Wanderer App", () => {
   it("Should load with the right title", () => {

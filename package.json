@@ -9,13 +9,13 @@
     "build-watch": "webpack -w -d",
     "start-watch": "nodemon server/index.js",
     "dev": "concurrently --kill-others \"npm run start-watch\" \"npm run build-watch\"",
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "selenium-setup": "selenium-standalone install",
     "selenium-start": "selenium-standalone start",
-    "e2e-tests": "wdio wdio.conf.js",
-    "e2e-tests-watch": "wdio wdio.conf.js --watch",
+    "e2etests": "wdio wdio.conf.js",
+    "e2etests-watch": "wdio wdio.conf.js --watch",
     "lint": "eslint src"
   },
   "repository": {
@@ -41,6 +41,7 @@
     "concurrently": "^3.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
+    "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -89,6 +90,7 @@
     "react-dom": "^16.4.1",
     "react-horizontal-timeline": "^1.5.3",
     "react-hot-loader": "^4.3.3",
+    "react-pure-lifecycle": "^2.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
@@ -109,6 +111,9 @@
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "modulePathIgnorePatterns": [
+      "./e2etests"
     ]
   }
 }

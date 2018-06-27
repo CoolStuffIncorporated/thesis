@@ -19,23 +19,3 @@ exports[`BlogList renders a blog post 1`] = `
   </WithStyles(Card)>
 </ul>
 `;
-
-exports[`render a blog post 1`] = `
-<ul>
-  <WithStyles(Card)
-    key="1"
-  >
-    <WithStyles(CardHeader)
-      subheader="BROICHI"
-      title="WELCOME TO NIHON"
-    />
-    <WithStyles(CardContent)>
-      <WithStyles(Typography)
-        paragraph={true}
-      >
-        YOLO SWAG
-      </WithStyles(Typography)>
-    </WithStyles(CardContent)>
-  </WithStyles(Card)>
-</ul>
-`;
