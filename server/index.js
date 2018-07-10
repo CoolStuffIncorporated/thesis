@@ -9,6 +9,8 @@ const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const logger = require("morgan");
 const cors = require("cors");
+const busboy = require('connect-busboy')
+const busboyBodyParser = require('busboy-body-parser')
 const router = require("./routes");
 
 const {
@@ -24,12 +26,15 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Apply middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(compression("gzip"));
 app.use(logger("dev"));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../dist/")));
+app.use(busboy());
+app.use(busboyBodyParser());
 app.use("/", router);
 
 // development error handler

@@ -9,6 +9,9 @@ const {
 // const Tag = require("./Models/tag");
 // const Blog = require("./Models/blog");
 // const BlogTag = require("./Models/blogtag");
+const axios = require("axios");
+
+const ec2path = "http://ec2-52-91-143-214.compute-1.amazonaws.com:3000";
 
 const {
   log,
@@ -86,7 +89,7 @@ router.get("/userInfo", async (req, res, next) => {
     res.status(200).send(userInfo);
   } catch (err) {
     console.error(err);
-    res.status(404).send("Unable to retrieve user info");
+    res.status(404).send("Unable /#/to retrieve user info");
   }
 });
 
@@ -129,6 +132,7 @@ router.get("/blogsByUserId", async (req, res, next) => {
 // used for looking up blogs and tags
 router.get("/blogsByBlogId", async (req, res, next) => {
   try {
+    /#/;
     const blog = Blog.retrieveBlogsByBlogId(req.query.blog_id);
     res.status(200).send(blog);
   } catch (err) {
@@ -168,6 +172,41 @@ router.get("/tags", async (req, res, next) => {
     console.error(err);
     res.status(404).send("Unable to retrieve tags");
   }
+});
+
+router.post("/create", (req, res) => {
+  const file = req.files.file;
+  const userId = req.body.user_id;
+  axios
+    .post(`${ec2path}/create`, {
+      file
+    })
+    .then(imageinfo => {
+      User.addProfilePhotoByUserId(imageinfo.data, userId).then(
+        res.sendStatus(200)
+      );
+    });
+});
+
+router.get("/retrieve", (req, res) => {
+  const userId = req.query.userId;
+  User.retrieveProfilePhotoByUserId(userId, userInfo => {
+    axios
+      .get(`${ec2path}/retrieve`, {
+        params: {
+          eTag: userInfo[0].etag,
+          key: userInfo[0].image_key
+        }
+      })
+      .then(photo => {
+        console.log('success retrieve', photo.data)
+        res.send(photo.data);
+      })
+      .catch(err => {
+        console.error(err);
+        res.sendStatus(404);
+      });
+  });
 });
 
 module.exports = router;

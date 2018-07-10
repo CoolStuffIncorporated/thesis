@@ -23,6 +23,9 @@ exports.up = (knex, Promise) =>
       table.string("name");
       table.string("email");
       table.string("bio");
+      table.string("etag");
+      table.string("image_key");
+      table.string("version_id");
     }),
     knex.schema.createTable("blogs", table => {
       table.increments("blog_id").primary();
