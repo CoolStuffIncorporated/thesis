@@ -1,4 +1,8 @@
 import { combineReducers } from "redux";
+import { reducer as form } from "redux-form";
+import client from "./clientReducer";
+import signup from "./signupReducer";
+import login from "./loginReducer";
 import { faveDestinations, visitedDestinations } from "./destinationsReducer";
 import blogs from "./blogReducer";
 import location from "./locationReducer";
@@ -22,7 +26,11 @@ const rootReducer = combineReducers({
   blogs,
   headerSetting,
   faveDestinations,
-  visitedDestinations
+  visitedDestinations,
+  form,
+  client,
+  signup,
+  login
   // photos
   // userId
 });

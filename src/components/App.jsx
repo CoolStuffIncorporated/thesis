@@ -1,6 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import { Route, Switch, Redirect } from "react-router-dom";
+// import { Route, Switch, Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import SidebarContainer from "../containers/SidebarContainer";
 import GlobalMapContainer from "../containers/GlobalMapContainer";
@@ -16,12 +17,19 @@ import PhotosContainer from "../containers/PhotosContainer";
 import Explore from "./Explore/Explore";
 // import NotFoundPage from "./NotFoundPage";
 // import LoginPage from "./LoginPage";
+import Signup from "./Signup";
+import Login from "./Login";
 import asyncComponent from "../hoc/asyncComponent";
+
+import { checkIndexAuthorization } from "../lib/check-auth";
 
 const asyncBlogs = asyncComponent(() => {
   return import("../containers/BlogsContainer");
 });
 
+// <Route onEnter={checkIndexAuthorization(store)} path="/login" component={Login} />
+
+        // <IndexRoute onEnter={checkIndexAuthorization(store)} />
 const App = () => (
   <div className="app">
     <center>
@@ -34,14 +42,16 @@ const App = () => (
       <HeaderContainer />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/profile" component={UserProfile} />
-        <Route exact path="/search" component={LocationProfile} />
-        <Route exact path="/attractions" component={AttractionsContainer} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={UserProfile} />
+        <Route path="/search" component={LocationProfile} />
+        <Route path="/attractions" component={AttractionsContainer} />
         <Route path="/blogs" component={asyncBlogs} />
-        <Route exact path="/friends" component={FriendsList} />
-        <Route exact path="/photos" component={PhotosContainer} />
-        <Route exact path="/destinations" component={DestinationsContainer} />
-        <Route exact path="/explore" component={Explore} />
+        <Route path="/friends" component={FriendsList} />
+        <Route path="/photos" component={PhotosContainer} />
+        <Route path="/destinations" component={DestinationsContainer} />
+        <Route path="/explore" component={Explore} />
         <Redirect to="/" />
       </Switch>
     </center>

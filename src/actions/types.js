@@ -22,3 +22,14 @@ export const SET_HEADER = "SET_HEADER";
 export const RCV_ERROR = "RCV_ERROR";
 export const ADD_ERROR = "ADD_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+export const CLIENT_SET = "CLIENT_SET";
+export const CLIENT_UNSET = "CLIENT_UNSET";
+
+export const SIGNUP_REQUESTING = "SIGNUP_REQUESTING";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_ERROR = "SIGNUP_ERROR";
+
+export const LOGIN_REQUESTING = "LOGIN_REQUESTING";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
