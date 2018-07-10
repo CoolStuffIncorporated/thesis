@@ -4,22 +4,25 @@ import * as actions from "./types";
 // all logic in action creators and/or utility functions used by action creators!
 
 // helper function for addFaveDestination
-function addFaveDestinationSuccess(destination) {
+function addFaveDestinationSuccess(faveDestinations) {
   return {
     type: actions.ADD_FAV_DESTINATION_SUCCESS,
-    payload: destination
+    faveDestinations
   };
 }
 
 // add a country to favorites by user id
 export function addFaveDestination(userId, country) {
+  console.log('1. hit destinations action to add fave');
   return dispatch => {
     axios
       .post("/favorites", {
         userId,
         country
       })
-      .then(() => dispatch(addFaveDestinationSuccess));
+      .then(({ faveDestinations }) =>
+        dispatch(addFaveDestinationSuccess(faveDestinations))
+      );
   };
 }
 
@@ -50,23 +53,24 @@ export function getFaveDestinations(userId) {
 }
 
 // helper function for addVisitedDestinations
-function addVisitedDestinationSuccess(destination) {
+function addVisitedDestinationSuccess(visitedDestinations) {
   return {
     type: actions.ADD_VISITED_DESTINATION_SUCCESS,
-    payload: destination
+    visitedDestinations
   };
 }
 
 // add a country to visited destinations by user id
 export function addVisitedDestination(userId, country) {
+  console.log('1. hit destinations action to add visited');
   return dispatch => {
     axios
       .post("/visited", {
         userId,
         country
       })
-      .then(() => {
-        dispatch(addVisitedDestinationSuccess(country));
+      .then(({ visitedDestinations }) => {
+        dispatch(addVisitedDestinationSuccess(visitedDestinations));
       });
   };
 }

@@ -1,6 +1,10 @@
-const updatePhotos = photos => ({
-  type: "UPDATE_PHOTOS",
-  photos
-});
+export function updatePhotos(photos) {
+  "UPDATE_PHOTOS", photos;
+}
 
-export default updatePhotos;
+export function updateProfilePhoto(profilePhoto) {
+  return {
+    type: "UPDATE_PROFILE_PHOTO",
+    profilePhoto
+  };
+}

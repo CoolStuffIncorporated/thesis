@@ -2,14 +2,14 @@ import { connect } from "react-redux";
 import Destinations from "../components/Destinations";
 import updateNav from "../actions/header";
 import {
-  getFaveDestinations,
-  getVisitedDestinations
+  getVisitedDestinations,
+  getFaveDestinations
 } from "../actions/destinations";
 
 const mapStateToProps = state => ({
   navFlag: state.navFlag,
-  faveDestinations: state.faveDestinations,
   visitedDestinations: state.visitedDestinations,
+  faveDestinations: state.faveDestinations,
   userId: state.userId
 });
 
@@ -17,11 +17,11 @@ const mapDispatchToProps = dispatch => ({
   handleNavUpdate: flag => {
     dispatch(updateNav(flag));
   },
-  getFaveDestinations: userId => {
-    dispatch(getFaveDestinations(userId));
-  },
   getVisitedDestinations: userId => {
     dispatch(getVisitedDestinations(userId));
+  },
+  getFaveDestinations: userId => {
+    dispatch(getFaveDestinations(userId));
   }
 });
 

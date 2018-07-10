@@ -1,22 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import lifecycle from "react-pure-lifecycle";
+import lifecycle from "react-pure-lifecycle";
 
-// const methods = {
-//   componentDidMount({handleNavUpdate, getDestinationsFuture, getDestinationsPast, user_id}) {
-//     console.log('getDestinationsPast',getDestinationsPast(user_id))
-//     handleNavUpdate('dashboard');
-//     getDestinationsFuture(user_id);
-//     getDestinationsPast(user_id);
-//   }
-// };
+const methods = {
+  componentDidMount({ getFaveDestinations, getVisitedDestinations, userId }) {
+    getFaveDestinations(userId);
+    getVisitedDestinations(userId);
+  }
+};
 
-const Destinations = ({ faveDestinations, visitedDestinations }) => {
-  console.log(
-    "destinations future & past",
-    faveDestinations,
-    visitedDestinations
-  );
+const Destinations = ({ visitedDestinations, faveDestinations }) => {
+  // console.log("visited and fave dest:", visitedDestinations, faveDestinations);
   return (
     <div className="destinations">
       <h1>Destinations</h1>
@@ -24,8 +18,8 @@ const Destinations = ({ faveDestinations, visitedDestinations }) => {
         <h2>Places I've Been:</h2>
         {visitedDestinations.map(visited => {
           return (
-            <div>
-              <p>☑ {visited}</p>
+            <div key={visited.country_id}>
+              <p>☑ {visited.country}</p>
             </div>
           );
         })}
@@ -35,8 +29,8 @@ const Destinations = ({ faveDestinations, visitedDestinations }) => {
         <h2>Places I Want To Visit:</h2>
         {faveDestinations.map(fave => {
           return (
-            <div>
-              <p>☐ {fave}</p>
+            <div key={fave.country_id}>
+              <p>☐ {fave.country}</p>
             </div>
           );
         })}
@@ -46,9 +40,8 @@ const Destinations = ({ faveDestinations, visitedDestinations }) => {
 };
 
 Destinations.propTypes = {
-  visitedDestinations: PropTypes.arrayOf(PropTypes.string).isRequired,
-  faveDestinations: PropTypes.arrayOf(PropTypes.string).isRequired
+  visitedDestinations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  faveDestinations: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-// export default lifecycle(methods)(Destinations);
-export default Destinations;
+export default lifecycle(methods)(Destinations);

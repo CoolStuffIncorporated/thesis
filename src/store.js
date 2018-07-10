@@ -28,7 +28,7 @@ const store = createStore(
   {
     // currentText: "Initializing...",
     headerSetting: HOME,
-    countries: CountriesAll,
+    // countries: CountriesAll,
     location: "",
     blogs: [
       {
@@ -52,8 +52,9 @@ const store = createStore(
       currencies: [{ name: "" }]
     },
     userId: 1,
-    faveDestinations: ["Iceland", "Japan"],
-    visitedDestinations: ["Hong Kong", "Argentina"]
+    faveDestinations: [],
+    visitedDestinations: [],
+    profilePhoto: ""
   },
   composeEnhancers(applyMiddleware(thunk, sagaMiddleware, logger))
 );

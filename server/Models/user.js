@@ -29,4 +29,24 @@ User.retrieveFriendsByUserId = (userId, cb) => {
     .catch(err => console.error(err));
 };
 
+User.addProfilePhotoByUserId = (imageinfo, user_id) => {
+  console.log("imageinfo", imageinfo);
+  console.log("user_id", user_id);
+  return db("users")
+    .where({ user_id })
+    .update({
+      etag: imageinfo.ETag.substring(1, imageinfo.ETag.length - 1),
+      version_id: imageinfo.VersionId,
+      image_key: imageinfo.key
+    });
+};
+
+User.retrieveProfilePhotoByUserId = (user_id, cb) => {
+  console.log("user_id", user_id);
+  return db("users")
+    .where({ user_id })
+    .then(user => cb(user))
+    .catch(err => console.error(err));
+};
+
 module.exports = User;

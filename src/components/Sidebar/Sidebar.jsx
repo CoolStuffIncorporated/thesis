@@ -6,6 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import SearchContainer from "../../containers/SearchContainer";
+import ProfilePhotoContainer from "../../containers/ProfilePhotoContainer.jsx";
 import { HOME } from "../../constants";
 
 const Sidebar = ({ setHeader }) => (
@@ -21,7 +22,7 @@ const Sidebar = ({ setHeader }) => (
       <br />
       <List component="nav">
         <center>
-          <img width="128px" height="128px" alt="Profile pic" />
+          <ProfilePhotoContainer />
         </center>
         <br />
         <SearchContainer />

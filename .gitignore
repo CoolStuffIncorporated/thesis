@@ -1,3 +1,4 @@
+
 node_modules/
 package-lock.json
 config.js
@@ -31,4 +32,3 @@ knexfile.js
 
 wanderer.service
 stats.json
-

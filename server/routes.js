@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const axios = require("axios");
 const User = require("./Models/user");
 const Destinations = require("./Models/destinations");
 const {
@@ -9,6 +10,8 @@ const {
 // const Tag = require("./Models/tag");
 // const Blog = require("./Models/blog");
 // const BlogTag = require("./Models/blogtag");
+
+const ec2path = "http://ec2-52-91-143-214.compute-1.amazonaws.com:3000";
 
 const {
   log,
@@ -47,7 +50,7 @@ router.post("/getLocationBasicInfo", (req, res) => {
 router.get("/favorites", (req, res) => {
   Destinations.retrieveFavByUserId(req.query.userId, countries => {
     // console.log('favorite countries', countries)
-    res.send(countries);
+    res.status(200).send(countries);
   });
 });
 
@@ -62,12 +65,12 @@ router.get("/visited", (req, res) => {
 });
 
 router.post("/favorites", (req, res) => {
-  console.log(req.body);
+  console.log('2. hit server post route to fav:', req.body.country);
   Destinations.addFavByUserId(req.body.userId, req.body.country);
 });
 
 router.post("/visited", (req, res) => {
-  console.log(req.body);
+  console.log('2. hit server post route to visited:', req.body);
   Destinations.addVisitedByUserId(req.body.userId, req.body.country);
 });
 
@@ -86,7 +89,7 @@ router.get("/userInfo", async (req, res, next) => {
     res.status(200).send(userInfo);
   } catch (err) {
     console.error(err);
-    res.status(404).send("Unable to retrieve user info");
+    res.status(404).send("Unable /#/to retrieve user info");
   }
 });
 
@@ -129,6 +132,7 @@ router.get("/blogsByUserId", async (req, res, next) => {
 // used for looking up blogs and tags
 router.get("/blogsByBlogId", async (req, res, next) => {
   try {
+    /#/;
     const blog = Blog.retrieveBlogsByBlogId(req.query.blog_id);
     res.status(200).send(blog);
   } catch (err) {
@@ -168,6 +172,41 @@ router.get("/tags", async (req, res, next) => {
     console.error(err);
     res.status(404).send("Unable to retrieve tags");
   }
+});
+
+router.post("/create", (req, res) => {
+  const file = req.files.file;
+  const userId = req.body.user_id;
+  axios
+    .post(`${ec2path}/create`, {
+      file
+    })
+    .then(imageinfo => {
+      User.addProfilePhotoByUserId(imageinfo.data, userId).then(
+        res.sendStatus(200)
+      );
+    });
+});
+
+router.get("/retrieve", (req, res) => {
+  const userId = req.query.userId;
+  User.retrieveProfilePhotoByUserId(userId, userInfo => {
+    axios
+      .get(`${ec2path}/retrieve`, {
+        params: {
+          eTag: userInfo[0].etag,
+          key: userInfo[0].image_key
+        }
+      })
+      .then(photo => {
+        console.log('success retrieve', photo.data)
+        res.send(photo.data);
+      })
+      .catch(err => {
+        console.error(err);
+        res.sendStatus(404);
+      });
+  });
 });
 
 module.exports = router;

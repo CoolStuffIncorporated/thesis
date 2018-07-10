@@ -8,7 +8,7 @@ import GlobalMapContainer from "../containers/GlobalMapContainer";
 import Home from "./Home";
 import HeaderContainer from "../containers/HeaderContainer";
 import UserProfile from "./UserProfile/UserProfile";
-import LocationProfile from "./LocationProfile/LocationProfile";
+import LocationProfileContainer from "../containers/LocationProfileContainer";
 import AttractionsContainer from "../containers/AttractionsContainer";
 // import Blogs from "../containers/BlogsContainer";
 import FriendsList from "./FriendsList";
@@ -45,7 +45,7 @@ const App = () => (
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={UserProfile} />
-        <Route path="/search" component={LocationProfile} />
+        <Route path="/search" component={LocationProfileContainer} />
         <Route path="/attractions" component={AttractionsContainer} />
         <Route path="/blogs" component={asyncBlogs} />
         <Route path="/friends" component={FriendsList} />
