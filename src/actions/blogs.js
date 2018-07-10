@@ -2,24 +2,33 @@ import axios from "../axios";
 import {
   GET_BLOGS_REQUEST,
   GET_BLOGS_SUCCESS,
-  GET_BLOGS_FAILURE
+  GET_BLOGS_FAILURE,
+  BLOG_CREATING,
+  BLOG_CREATE_SUCCESS,
+  BLOG_CREATE_ERROR
 } from "./types";
 
-// all logic in action creators and/or utility functions used by action creators!
-
-// helper method for action creator
-function addBlogAsync(blog) {
+export const blogCreate = (client, blog) => {
   return {
-    type: types.ADD_BLOG,
-    payload: blog
+    type: BLOG_CREATING,
+    client,
+    blog
   };
-}
+};
 
-export function addBlog(blog) {
-  return dispatch => {
-    dispatch(addBlogAsync(blog));
+export const blogCreateSuccess = blog => {
+  return {
+    type: BLOG_CREATE_SUCCESS,
+    blog
   };
-}
+};
+
+export const blogCreateError = error => {
+  return {
+    type: BLOG_CREATE_ERROR,
+    error
+  };
+};
 
 export const getBlogsRequest = () => {
   return {
