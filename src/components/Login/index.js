@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import Button from "@material-ui/core/Button";
-import { TextField } from "@material-ui/core/TextField";
 
 import Messages from "../Notifications/Messages";
 import Errors from "../Notifications/Errors";
 
-import loginRequest from "../../actions/index";
+import { loginRequest } from "../../actions/index";
 
 class Login extends Component {
   static propTypes = {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 
-import signupRequest from "../../actions/index";
+import { signupRequest } from "../../actions/index";
 import Messages from "../Notifications/Messages";
 import Errors from "../Notifications/Errors";
 

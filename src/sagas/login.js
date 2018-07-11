@@ -1,7 +1,7 @@
 /* global localStorage, fetch */
 import { take, fork, cancel, call, put, cancelled } from "redux-saga/effects";
 import { Redirect } from "react-router-dom";
-
+import history from "../history";
 import { handleApiErrors } from "../lib/api-errors";
 
 import {

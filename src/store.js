@@ -2,10 +2,11 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
+
 import rootReducer from "./reducers";
-import CountriesAll from "./components/LocationProfile/CountriesAll";
+// import CountriesAll from "./components/LocationProfile/CountriesAll";
 // import photos from "../example data/pictures-of-japan";
-import IndexSagas from "./sagas";
+import rootSagas from "./sagas";
 import { HOME } from "./constants";
 
 // /* eslint disable */
@@ -59,6 +60,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, sagaMiddleware, logger))
 );
 
-sagaMiddleware.run(IndexSagas);
+sagaMiddleware.run(rootSagas);
 
 export default store;

@@ -1,6 +1,6 @@
 import React from "react";
 import { hot } from "react-hot-loader";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 // import { Route, Switch, Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import SidebarContainer from "../containers/SidebarContainer";
@@ -20,18 +20,24 @@ import Explore from "./Explore/Explore";
 import Signup from "./Signup";
 import Login from "./Login";
 import asyncComponent from "../hoc/asyncComponent";
+import Blogs from "../components/AddBlog";
 
-import { checkIndexAuthorization } from "../lib/check-auth";
+// import { checkIndexAuthorization } from "../lib/check-auth";
 
 const asyncBlogs = asyncComponent(() => {
   return import("../containers/BlogsContainer");
 });
 
-// <Route onEnter={checkIndexAuthorization(store)} path="/login" component={Login} />
-
-        // <IndexRoute onEnter={checkIndexAuthorization(store)} />
 const App = () => (
   <div className="app">
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/login">Login</Link>
+      </li>
+    </ul>
     <center>
       <Typography variant="display2">Wanderer</Typography>
       <br />
