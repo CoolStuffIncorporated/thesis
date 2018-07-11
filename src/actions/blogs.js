@@ -1,51 +1,61 @@
+import axios from "../axios";
 import {
-  BLOG_REQUESTING,
-  BLOG_REQUEST_SUCCESS,
-  BLOG_REQUEST_ERROR,
-  BLOG_CREATING,
-  BLOG_CREATE_SUCCESS,
-  BLOG_CREATE_ERROR
+  GET_BLOGS_REQUEST,
+  GET_BLOGS_SUCCESS,
+  GET_BLOGS_FAILURE
 } from "./types";
 
-export const blogCreate = (client, blog) => {
+// all logic in action creators and/or utility functions used by action creators!
+
+// helper method for action creator
+// function addBlogAsync(blog) {
+//   return {
+//     type: types.ADD_BLOG,
+//     payload: blog
+//   };
+// }
+
+// export function addBlog(blog) {
+//   return dispatch => {
+//     dispatch(addBlogAsync(blog));
+//   };
+// }
+
+export const getBlogsRequest = () => {
   return {
-    type: BLOG_CREATING,
-    client,
-    blog
+    type: GET_BLOGS_REQUEST
   };
 };
 
-export const blogCreateSuccess = blog => {
+export const getBlogsSuccess = blogs => {
   return {
-    type: BLOG_CREATE_SUCCESS,
-    blog
-  };
-};
-
-export const blogCreateError = error => {
-  return {
-    type: BLOG_CREATE_ERROR,
-    error
-  };
-};
-
-export const blogRequest = client => {
-  return {
-    type: BLOG_REQUESTING,
-    client
-  };
-};
-
-export const blogRequestSuccess = blogs => {
-  return {
-    type: BLOG_REQUEST_SUCCESS,
+    type: GET_BLOGS_SUCCESS,
     blogs
   };
 };
 
-export const blogRequestError = error => {
+export const getBlogsFailure = error => {
   return {
-    type: BLOG_REQUEST_ERROR,
+    type: GET_BLOGS_FAILURE,
     error
+  };
+};
+
+export const getBlogs = () => {
+  return dispatch => {
+    dispatch(getBlogsRequest());
+    return axios
+      .get("/blogs")
+      .then(res => {
+        console.log(res);
+        const blogs = res.data.map(blog => {
+          return blog;
+        });
+        dispatch(getBlogsSuccess(blogs));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(getBlogsFailure(err));
+      });
   };
 };

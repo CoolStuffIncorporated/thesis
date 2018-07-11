@@ -1,20 +1,13 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import createSagaMiddleware from "redux-saga";
+// import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./reducers";
 // import CountriesAll from "./components/LocationProfile/CountriesAll";
 // import photos from "../example data/pictures-of-japan";
-import rootSagas from "./sagas";
+// import rootSagas from "./sagas";
 import { HOME } from "./constants";
-
-// /* eslint disable */
-// const composeEnhancers =
-//   process.env.NODE_ENV === "development"
-//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//     : null || compose;
-// /* eslint enable */
 
 /*eslint-disable */
 const composeEnhancers = process.env.NODE_ENV !== 'production' && typeof window === 'object' &&
@@ -22,7 +15,7 @@ const composeEnhancers = process.env.NODE_ENV !== 'production' && typeof window 
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
 /* eslint-enable */
 
-const sagaMiddleware = createSagaMiddleware();
+// const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
@@ -31,6 +24,7 @@ const store = createStore(
     headerSetting: HOME,
     // countries: CountriesAll,
     location: "",
+    friends: [],
     blogs: [
       {
         blogId: "1",
@@ -46,6 +40,8 @@ const store = createStore(
       }
     ],
     // photos,
+    friendInfo: {},
+    userInfo: {},
     pointsOfInterest: [],
     attractions: [],
     locationBasicInfo: {
@@ -53,13 +49,16 @@ const store = createStore(
       currencies: [{ name: "" }]
     },
     userId: 1,
+    profilePhoto: "",
+    albumPhotos: [],
     faveDestinations: [],
+    faveCount: 0,
     visitedDestinations: [],
-    profilePhoto: ""
+    visitedCount: 0
   },
-  composeEnhancers(applyMiddleware(thunk, sagaMiddleware, logger))
+  composeEnhancers(applyMiddleware(thunk, logger))
 );
 
-sagaMiddleware.run(rootSagas);
+// sagaMiddleware.run(rootSagas);
 
 export default store;
