@@ -2,18 +2,17 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { Route, Router } from "react-router-dom";
-import createHistory from "history/createBrowserHistory";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+// import createHistory from "history/createBrowserHistory";
 
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 import store from "./store";
-
-export const history = createHistory();
+// <Router history={history}>
 
 render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router>
       <Route component={App} />
     </Router>
   </Provider>,

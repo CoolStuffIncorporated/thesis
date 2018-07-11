@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-import SignOutButton from "../SignOut";
 import * as routes from "../../constants/routes";
+
+// const SignOutButton = require("../SignOut");
+import SignOutButton from "../SignOut";
 
 const Navigation = ({ authUser }) => (
   <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>

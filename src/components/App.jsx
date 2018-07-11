@@ -90,4 +90,4 @@ const App = () => (
   </div>
 );
 
-export default hot(module)(withAuthentication(App));
+export default withAuthentication(App);
