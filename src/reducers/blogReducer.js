@@ -8,7 +8,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  blogs: [],
+  list: [],
   requesting: false,
   successful: false,
   messages: [],
@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
       };
     case BLOG_CREATE_SUCCESS:
       return {
-        blogs: state.blogs.concat([action.blog]),
+        list: state.list.concat([action.blog]),
         requesting: false,
         successful: true,
         messages: [
@@ -61,33 +61,40 @@ const reducer = (state = initialState, action) => {
         ...state,
         requesting: false,
         successful: true,
-        messages: [{
-          body: "Fetching blogs...",
-          time: new Date()
-        }],
+        messages: [
+          {
+            body: "Fetching blogs...",
+            time: new Date()
+          }
+        ],
         errors: []
-      }
+      };
     case BLOG_REQUEST_SUCCESS:
       return {
-        blogs: action.blogs,
+        list: action.list,
         requesting: false,
         successful: true,
-        messages: [{
-          body: "Blogs fetched successfully",
-          time: new Date()
-        }],
+        messages: [
+          {
+            body: "Blogs fetched successfully",
+            time: new Date()
+          }
+        ],
         errors: []
-      },
+      };
     case BLOG_REQUEST_ERROR:
       return {
         requesting: false,
         successful: false,
         messages: [],
-        errors: state.errors.concat[{
-          body: action.error.toString(),
-          time: new Date()
-        }]
-      }
+        errors:
+          state.errors.concat[
+            {
+              body: action.error.toString(),
+              time: new Date()
+            }
+          ]
+      };
     default:
       return state;
   }

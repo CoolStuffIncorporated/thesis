@@ -1,3 +1,4 @@
+/* global fetch */
 import { call, put, takeLatest } from "redux-saga/effects";
 import { handleApiErrors } from "../lib/api-errors";
 import {

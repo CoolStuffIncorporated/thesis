@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Messages from "../Notifications/Messages";
 import Errors from "../Notifications/Errors";
 
-import { blogCreate } from "../../actions/blogs";
+import { blogCreate, blogRequest } from "../../actions/blogs";
 
 const titleRequired = value => (value ? undefined : "Title Required");
 
@@ -20,14 +20,26 @@ class Blog extends Component {
       token: PropTypes.object.isRequired
     }),
     blogs: PropTypes.shape({
-      blogs: PropTypes.array,
+      list: PropTypes.array,
       requesting: PropTypes.bool,
       successful: PropTypes.bool,
       messages: PropTypes.array,
       errors: PropTypes.array
     }).isRequired,
     blogCreate: PropTypes.func.isRequired,
+    blogRequest: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired
+  };
+
+  constructor(props) {
+    super(props);
+    this.fetchBlogs();
+  }
+
+  fetchBlogs = () => {
+    const { client, blogRequest } = this.props;
+    if (client && client.token) return blogRequest(client);
+    return false;
   };
 
   submit = blog => {
@@ -58,7 +70,7 @@ class Blog extends Component {
     const {
       handleSubmit,
       invalid,
-      blogs: { blogs, requesting, successful, messages, errors }
+      blogs: { list, requesting, successful, messages, errors }
     } = this.props;
 
     return (
@@ -103,6 +115,31 @@ class Blog extends Component {
               !!messages.length && <Messages messages={messages} />}
           </div>
         </div>
+        {/* blog list area */}
+        <div className="blog-list">
+          <table>
+            <thread>
+              <tr>
+                <th>Title</th>
+                <th>Contents</th>
+              </tr>
+            </thread>
+            <tbody>
+              {list &&
+                !!list.length &&
+                list.map(blog => (
+                  <tr key={blog.id}>
+                    <td>
+                      <strong>{`${blog.title}`}</strong>
+                    </td>
+                    <td>{`${blog.contents}`}</td>
+                    {/* add tags and authors later */}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          <Button onClick={this.fetchBlogs}>Refetch Blogs</Button>
+        </div>
       </div>
     );
   }
@@ -115,7 +152,7 @@ const mapStateToProps = state => ({
 
 const connected = connect(
   mapStateToProps,
-  { blogCreate }
+  { blogCreate, blogRequest }
 )(Blog);
 const formed = reduxForm({
   form: "blogs"
