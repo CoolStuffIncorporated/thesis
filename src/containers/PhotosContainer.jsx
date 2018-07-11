@@ -1,13 +1,24 @@
 import { connect } from "react-redux";
 import PhotoGrid from "../components/PhotoGrid";
+import { getAlbumPhotos } from "../actions/photos";
 
 const mapStateToProps = state => ({
-  photos: state.photos
+  albumPhotos: state.albumPhotos,
+  userId: state.userId,
+  friendsId: state.friendsId,
+  location: state.location,
+  headerSetting: state.headerSetting
+});
+
+const mapDispatchToProps = dispatch => ({
+  getAlbumPhotos: (userId, location) => {
+    dispatch(getAlbumPhotos(userId, location));
+  }
 });
 
 const PhotosContainer = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(PhotoGrid);
 
 export default PhotosContainer;

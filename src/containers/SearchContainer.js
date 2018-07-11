@@ -4,7 +4,9 @@ import setHeader from "../actions/header";
 import {
   getPointsOfInterest,
   getAttractions,
-  getLocationBasicInfo
+  getLocationBasicInfo,
+  getVisitedCount,
+  getFaveCount
 } from "../actions/search";
 import Search from "../components/Search";
 
@@ -19,7 +21,9 @@ const mapDispatchToProps = dispatch => ({
   setHeader: term => dispatch(setHeader(term)),
   getLocationBasicInfo: term => dispatch(getLocationBasicInfo(term)),
   getPointsOfInterest: term => dispatch(getPointsOfInterest(term)),
-  getAttractions: term => dispatch(getAttractions(term))
+  getAttractions: term => dispatch(getAttractions(term)),
+  getVisitedCount: term => dispatch(getVisitedCount(term)),
+  getFaveCount: term => dispatch(getFaveCount(term))
 });
 
 const SearchContainer = connect(

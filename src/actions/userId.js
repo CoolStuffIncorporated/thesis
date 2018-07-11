@@ -7,4 +7,11 @@ function changeUserId(userId) {
   };
 }
 
-export default changeUserId;
+function changeFriendsId(friendsId) {
+  return {
+    type: actions.CHANGE_FRIENDSID,
+    friendsId
+  };
+}
+
+export { changeUserId, changeFriendsId };

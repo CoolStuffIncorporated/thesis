@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import LocationStatsContainer from "../../containers/LocationStatsContainer";
 import LocationBasicInfoContainer from "../../containers/LocationBasicInfoContainer";
 import PointsOfInterestContainer from "../../containers/PointsOfInterestContainer";
 
@@ -13,10 +14,7 @@ const LocationProfile = ({
     <div className="location-profile">
       <h1>{location}</h1>
 
-      <div>
-        <p>[37] Wanderers have visited here.</p>
-        <p>[58] Wanderers want to visit here.</p>
-      </div>
+      <LocationStatsContainer />
 
       <div className="add-location-options">
         <button

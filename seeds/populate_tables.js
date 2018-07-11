@@ -57,18 +57,6 @@ exports.seed = (knex, Promise) => {
       { blog_tags_id: 1, tag_id: 1, blog_id: 1 },
       { blog_tags_id: 2, tag_id: 2, blog_id: 1 }
     ]),
-    knex("media").insert([
-      {
-        media_id: 1,
-        link:
-          "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzLzVhYmUzNTk5ZDU0MjNiNjM0MF9yb2JvdC1yZXN0YXVyYW50LXZzLmpwZyJdLFsicCIsInRodW1iIiwiNjAweDQwMCsxNSswIl0sWyJwIiwiY29udmVydCIsIi1xdWFsaXR5IDgxIC1hdXRvLW9yaWVudCJdLFsicCIsInRodW1iIiwiMzcyeDI0OCMiXV0",
-        user_id: 1
-      }
-    ]),
-    knex("media_tags").insert([
-      { media_tags_id: 1, tag_id: 1, media_id: 1 },
-      { media_tags_id: 2, tag_id: 2, media_id: 1 }
-    ]),
     knex("countries").insert([
       { country_id: 1, country: "Afghanistan" },
       { country_id: 2, country: "Albania" },
@@ -295,6 +283,68 @@ exports.seed = (knex, Promise) => {
       { user_friend_id: 1, friend_id: 2, user_id: 1 },
       { user_friend_id: 2, friend_id: 3, user_id: 1 },
       { user_friend_id: 3, friend_id: 4, user_id: 1 }
+    ]),
+    knex("media").insert([
+      {
+        user_id: 1,
+        country_id: 97,
+        image_url:
+          "https://s3.amazonaws.com/griffyndor/demand-response-Japan.jpg"
+      },
+      {
+        user_id: 1,
+        country_id: 97,
+        image_url: "https://s3.amazonaws.com/griffyndor/download.jpeg"
+      },
+      {
+        user_id: 1,
+        country_id: 97,
+        image_url: "https://s3.amazonaws.com/griffyndor/japan_rail_pass_03.jpg"
+      },
+      {
+        user_id: 1,
+        country_id: 97,
+        image_url: "https://s3.amazonaws.com/griffyndor/images.jpeg"
+      },
+      {
+        user_id: 2,
+        country_id: 97,
+        image_url:
+          "https://s3.amazonaws.com/griffyndor/Japan-McMandy/Doraemon-.jpg"
+      },
+      {
+        user_id: 2,
+        country_id: 97,
+        image_url:
+          "https://s3.amazonaws.com/griffyndor/Japan-McMandy/girls_in_japan.jpg"
+      },
+      {
+        user_id: 2,
+        country_id: 97,
+        image_url: "https://s3.amazonaws.com/griffyndor/Japan-McMandy/ramen.jpg"
+      },
+      {
+        user_id: 2,
+        country_id: 155,
+        image_url: "https://s3.amazonaws.com/griffyndor/Russia/Russia1.jpg"
+      },
+      {
+        user_id: 2,
+        country_id: 155,
+        image_url: "https://s3.amazonaws.com/griffyndor/Russia/Russia2.jpg"
+      },
+
+      {
+        user_id: 2,
+        country_id: 155,
+        image_url: "https://s3.amazonaws.com/griffyndor/Russia/Russia3.jpg"
+      },
+
+      {
+        user_id: 2,
+        country_id: 155,
+        image_url: "https://s3.amazonaws.com/griffyndor/Russia/Russia4.jpeg"
+      }
     ])
   );
 };

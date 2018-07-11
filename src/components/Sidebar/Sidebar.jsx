@@ -6,10 +6,10 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import SearchContainer from "../../containers/SearchContainer";
-import ProfilePhotoContainer from "../../containers/ProfilePhotoContainer.jsx";
+import ProfilePhotoContainer from "../../containers/ProfilePhotoContainer";
 import { HOME } from "../../constants";
 
-const Sidebar = ({ setHeader }) => (
+const Sidebar = ({ userId, setHeader, getFriendsList }) => (
   <div>
     <Drawer
       variant="permanent"
@@ -28,13 +28,19 @@ const Sidebar = ({ setHeader }) => (
         <SearchContainer />
         <br />
         <ListItem button>
-          <Link to="/">
+          <Link to="/home">
             <ListItemText primary="Home" onClick={() => setHeader(HOME)} />
           </Link>
         </ListItem>
         <ListItem button>
           <Link to="/friends">
-            <ListItemText primary="Friends" onClick={() => setHeader(HOME)} />
+            <ListItemText
+              primary="Friends"
+              onClick={() => {
+                setHeader(HOME);
+                getFriendsList(userId);
+              }}
+            />
           </Link>
         </ListItem>
         <ListItem button>
@@ -54,7 +60,9 @@ const Sidebar = ({ setHeader }) => (
 );
 
 Sidebar.propTypes = {
-  setHeader: PropTypes.func.isRequired
+  userId: PropTypes.number.isRequired,
+  setHeader: PropTypes.func.isRequired,
+  getFriendsList: PropTypes.func.isRequired
 };
 
 export default Sidebar;

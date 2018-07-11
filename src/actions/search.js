@@ -51,3 +51,45 @@ export function getLocationBasicInfo(term) {
     });
   };
 }
+
+function getVisitedCountSuccess(visitedCount) {
+  return {
+    type: actions.GET_VISITED_COUNT,
+    visitedCount
+  };
+}
+
+export function getVisitedCount(location) {
+  return dispatch => {
+    axios
+      .get("/getVisitedCount", {
+        params: {
+          location
+        }
+      })
+      .then(data => {
+        dispatch(getVisitedCountSuccess(data.data));
+      });
+  };
+}
+
+function getFaveCountSuccess(faveCount) {
+  return {
+    type: actions.GET_FAVE_COUNT,
+    faveCount
+  };
+}
+
+export function getFaveCount(location) {
+  return dispatch => {
+    axios
+      .get("/getFaveCount", {
+        params: {
+          location
+        }
+      })
+      .then(data => {
+        dispatch(getFaveCountSuccess(data.data));
+      });
+  };
+}

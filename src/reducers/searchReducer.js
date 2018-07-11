@@ -27,4 +27,28 @@ function locationBasicInfo(state = {}, action) {
   }
 }
 
-export { attractions, pointsOfInterest, locationBasicInfo };
+function visitedCount(state = 0, action) {
+  switch (action.type) {
+    case actions.GET_VISITED_COUNT:
+      return action.visitedCount;
+    default:
+      return state;
+  }
+}
+
+function faveCount(state = 0, action) {
+  switch (action.type) {
+    case actions.GET_FAVE_COUNT:
+      return action.faveCount;
+    default:
+      return state;
+  }
+}
+
+export {
+  attractions,
+  pointsOfInterest,
+  locationBasicInfo,
+  visitedCount,
+  faveCount
+};

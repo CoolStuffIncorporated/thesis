@@ -1,64 +1,97 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 import * as settings from "../constants";
 
 // The Header creates links that can be used to navigate
 // between routes.
-
+const linkStyles = {
+  textDecoration: "none"
+};
 const Header = ({ headerSetting }) => (
   <header>
     <center>
       {settings.HOME === headerSetting ? (
-        <nav>
-          <Link to="/">
-            <ListItemText primary="dashboard" />
+        <span
+          style={{
+            width: 400,
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "nowrap"
+          }}
+        >
+          <Link to="/home" style={linkStyles}>
+            <Typography>dashboard</Typography>
           </Link>
-          <Link to="/blogs">
-            <ListItemText primary="blog posts" />
+          <span> | </span>
+          <Link to="/blogs" style={linkStyles}>
+            <Typography>blog posts</Typography>
           </Link>
-          <Link to="/photos_videos">
-            <ListItemText primary="photos & videos" />
+          <span> | </span>
+          <Link to="/photos_videos" style={linkStyles}>
+            <Typography>photos & videos</Typography>
           </Link>
-          <Link to="/destinations">
-            <ListItemText primary="destinations" />
+          <span> | </span>
+          <Link to="/destinations" style={linkStyles}>
+            <Typography>destinations</Typography>
           </Link>
-        </nav>
+        </span>
       ) : null}
       {settings.LOCATION_PROFILE === headerSetting ? (
-        <nav>
-          <Link to="/search">
-            <ListItemText primary="overview" />
+        <span
+          style={{
+            width: 400,
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "nowrap"
+          }}
+        >
+          <Link to="/search" style={linkStyles}>
+            <Typography>overview</Typography>
           </Link>
-          <Link to="/attractions">
-            <ListItemText primary="obscure attractions" />
+          <span> | </span>
+          <Link to="/attractions" style={linkStyles}>
+            <Typography>obscure attractions</Typography>
           </Link>
-          <Link to="/photos_videos">
-            <ListItemText primary="photos & videos" />
+          <span> | </span>
+          <Link to="/photos_videos" style={linkStyles}>
+            <Typography>photos & videos</Typography>
           </Link>
-          <Link to="/blogs">
-            <ListItemText primary="blog posts" />
+          <span> | </span>
+          <Link to="/blogs" style={linkStyles}>
+            <Typography>blog posts</Typography>
           </Link>
-        </nav>
+        </span>
       ) : null}
       {settings.USER_PROFILE === headerSetting ? (
-        <nav>
-          <Link to="/profile">
-            <ListItemText primary="overview" />
+        <span
+          style={{
+            width: 400,
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "nowrap"
+          }}
+        >
+          <Link to="/profile" style={linkStyles}>
+            <Typography>overview</Typography>
           </Link>
-          <Link to="/blogs">
-            <ListItemText primary="blog posts" />
+          <span> | </span>
+          <Link to="/blogs" style={linkStyles}>
+            <Typography>blog posts</Typography>
           </Link>
-          <Link to="/photos_videos">
-            <ListItemText primary="photos & videos" />
+          <span> | </span>
+          <Link to="/photos_videos" style={linkStyles}>
+            <Typography>photos & videos</Typography>
           </Link>
-          <Link to="/destinations">
-            <ListItemText primary="destinations" />
+          <span> | </span>
+          <Link to="/destinations" style={linkStyles}>
+            <Typography>destinations</Typography>
           </Link>
-        </nav>
+        </span>
       ) : null}
     </center>
+    <br />
   </header>
 );
 

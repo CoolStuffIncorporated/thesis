@@ -4,6 +4,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
 
+import * as routes from "../constants/routes";
+
 import SidebarContainer from "../containers/SidebarContainer";
 import GlobalMapContainer from "../containers/GlobalMapContainer";
 import Home from "./Home";
@@ -11,12 +13,11 @@ import HeaderContainer from "../containers/HeaderContainer";
 import UserProfile from "./UserProfile/UserProfile";
 import LocationProfileContainer from "../containers/LocationProfileContainer";
 import AttractionsContainer from "../containers/AttractionsContainer";
-import FriendsList from "./FriendsList";
+import FriendsListContainer from "../containers/FriendsListContainer";
 import DestinationsContainer from "../containers/DestinationsContainer";
 import PhotosContainer from "../containers/PhotosContainer";
 import Explore from "./Explore/Explore";
 
-import * as routes from "../constants/routes";
 import SignUpPage from "./SignUp";
 import SignInPage from "./SignIn";
 import PasswordForgetPage from "./PasswordForget";
@@ -25,6 +26,8 @@ import LandingPage from "./Landing";
 import withAuthentication from "./Session/withAuthentication";
 import Navigation from "./Navigation";
 
+// import NotFoundPage from "./NotFoundPage";
+// import LoginContainer from "../containers/LoginContainer";
 import asyncComponent from "../hoc/asyncComponent";
 
 const asyncBlogs = asyncComponent(() => {
@@ -65,7 +68,11 @@ const App = () => (
           component={() => <AttractionsContainer />}
         />
         <Route exact path={routes.BLOGS} component={() => <asyncBlogs />} />
-        <Route exact path={routes.FRIENDS} component={() => <FriendsList />} />
+        <Route
+          exact
+          path={routes.FRIENDS}
+          component={() => <FriendsListContainer />}
+        />
         <Route
           exact
           path={routes.PHOTOS}

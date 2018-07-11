@@ -1,7 +1,12 @@
 // import necessary constants
 
-const photosReducer = (state = null, action) => {
-  /* {Insert Code Here} */
+const albumPhotos = (state = null, action) => {
+  switch (action.type) {
+    case "UPDATE_ALBUM_PHOTOS":
+      return action.albumPhotos;
+    default:
+      return state;
+  }
 };
 
 const profilePhoto = (state = null, action) => {
@@ -13,4 +18,4 @@ const profilePhoto = (state = null, action) => {
   }
 };
 
-export default profilePhoto;
+export { albumPhotos, profilePhoto };

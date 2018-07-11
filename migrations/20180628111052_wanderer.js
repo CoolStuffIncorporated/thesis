@@ -45,13 +45,12 @@ exports.up = (knex, Promise) =>
     }),
     knex.schema.createTable("media", table => {
       table.increments("media_id").primary();
-      table.string("link", 10000);
       table.integer("user_id");
-    }),
-    knex.schema.createTable("media_tags", table => {
-      table.increments("media_tags_id").primary();
-      table.integer("tag_id");
-      table.integer("media_id");
+      table.integer("country_id");
+      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.string("image_url");
+      // table.string("etag"); currently not using metadata to pull down photos
+      // table.string("key"); currently not using metadata to pull down photos
     }),
     knex.schema.createTable("user_friends", table => {
       table.increments("user_friend_id").primary();

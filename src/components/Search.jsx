@@ -27,7 +27,9 @@ class Search extends Component {
       changeSelectedLocation,
       getLocationBasicInfo,
       getPointsOfInterest,
-      getAttractions
+      getAttractions,
+      getVisitedCount,
+      getFaveCount
     } = this.props;
     const { field } = this.state;
     return (
@@ -55,6 +57,8 @@ class Search extends Component {
                 getLocationBasicInfo(field);
                 getPointsOfInterest(field);
                 getAttractions(field);
+                getVisitedCount(field);
+                getFaveCount(field);
               }}
             >
               Search
@@ -71,7 +75,9 @@ Search.propTypes = {
   changeSelectedLocation: PropTypes.func.isRequired,
   getLocationBasicInfo: PropTypes.func.isRequired,
   getPointsOfInterest: PropTypes.func.isRequired,
-  getAttractions: PropTypes.func.isRequired
+  getAttractions: PropTypes.func.isRequired,
+  getVisitedCount: PropTypes.func.isRequired,
+  getFaveCount: PropTypes.func.isRequired
 };
 
 export default Search;

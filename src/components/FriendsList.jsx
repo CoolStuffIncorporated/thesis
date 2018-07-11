@@ -4,19 +4,14 @@ import { Link } from "react-router-dom";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 
-const placeholder = "You don't have many friends, but here they are";
-const FriendsList = ({ friends, getUserInfo }) => (
+const message = "Here are your friends.";
+
+const FriendsList = ({ friends }) => (
   <div>
-    <Typography variant="headline">{placeholder}</Typography>
+    <Typography variant="headline">{message}</Typography>
     <div>
       {friends.map(friend => (
-        <Link
-          key={friend.user_id}
-          to="/profile"
-          onClick={() => {
-            getUserInfo(friend.user_id);
-          }}
-        >
+        <Link key={friend.userId} to="/profile">
           <center>
             <ListItemText primary={friend.username} />
           </center>
@@ -27,8 +22,7 @@ const FriendsList = ({ friends, getUserInfo }) => (
 );
 
 FriendsList.propTypes = {
-  friends: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getUserInfo: PropTypes.func.isRequired
+  friends: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default FriendsList;
