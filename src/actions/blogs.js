@@ -1,8 +1,7 @@
-import axios from "../axios";
 import {
-  GET_BLOGS_REQUEST,
-  GET_BLOGS_SUCCESS,
-  GET_BLOGS_FAILURE,
+  BLOG_REQUESTING,
+  BLOG_REQUEST_SUCCESS,
+  BLOG_REQUEST_ERROR,
   BLOG_CREATING,
   BLOG_CREATE_SUCCESS,
   BLOG_CREATE_ERROR
@@ -30,41 +29,23 @@ export const blogCreateError = error => {
   };
 };
 
-export const getBlogsRequest = () => {
+export const blogRequest = client => {
   return {
-    type: GET_BLOGS_REQUEST
+    type: BLOG_REQUESTING,
+    client
   };
 };
 
-export const getBlogsSuccess = blogs => {
+export const blogRequestSuccess = blogs => {
   return {
-    type: GET_BLOGS_SUCCESS,
+    type: BLOG_REQUEST_SUCCESS,
     blogs
   };
 };
 
-export const getBlogsFailure = error => {
+export const blogRequestError = error => {
   return {
-    type: GET_BLOGS_FAILURE,
+    type: BLOG_REQUEST_ERROR,
     error
-  };
-};
-
-export const getBlogs = () => {
-  return dispatch => {
-    dispatch(getBlogsRequest());
-    return axios
-      .get("/blogs")
-      .then(res => {
-        console.log(res);
-        const blogs = res.data.map(blog => {
-          return blog;
-        });
-        dispatch(getBlogsSuccess(blogs));
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch(getBlogsFailure(err));
-      });
   };
 };
